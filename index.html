@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Train Fare Guide</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="mrtlogo.svg">
+
+	<style>
+
+		.navbar-custom{
+        background-color:transparent ;
+        
+       }
+       .navbar-custom, .navbar-brand,
+       .navbar-custom, .nav-link{
+        color:white;
+        font-size: 20px;
+
+       }
+       .navbar-custom, .navbar-link:hover{
+        color: white;
+
+       }
+body {font-family: Verdana, sans-serif; margin:0;
+ background-image:url("manila train station.jpg");
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed; 
+      text-align: center;
+
+      color: white;
+ 
+
+      .container{
+      background-color: black;
+      color: white;
+      opacity: 0.8;
+      
+
+ }
+ .container-stations{
+    text-align: center;
+    
+ }
+ mark{
+    background: black;
+    color: white;
+ }
+
+.navlogo{
+    height: 100px;
+    width: auto;
+    margin-right: 50px;
+}
+
+.title{
+    background: lightgrey;
+    color: black;
+}
+
+.footer{
+position: fixed;
+left:0;
+bottom: 0;
+width:100%;
+background-color: #333;
+color: white;
+text-align: center;
+padding: 5px;
+font-size: 10px;
+flex-shrink: 0;
+text-align: center;
+
+
+
+
+
+
+	</style>
+
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <img src="mrtlogo.svg" class="navlogo">
+            <a class="navbar-brand nav-link" href="https://themetrorailguy.com/metro-rail-systems/manila-metro-information-stations-route-map-fare-prices-beep-pass-hours-timings/">Manila Metro Rail Transit</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home</a>  
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link" href="schedules.html">Train Schedules</a>  
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link" href="help.html">Help</a>  
+                    </li>
+                    
+                    <ul class="nav-item"><label for="search">Looking for anything?</label> <input type="search" name="search">
+                </ul>
+                
+            </div>
+        </div>
+
+    </nav>
+
+
+    </nav>
+
+
+
+
+ <br>
+<p style="font-size: 20px;"><mark class="title">Fare Guide</mark></p>
+<div class="container-stations">
+    <label for="start"><mark>Start Station:</mark></label> <br>
+    <select id="start">
+        <option value="ntave">North Avenue</option>
+        <option value="qzave">Quezon Avenue</option>
+        <option value="kamu">Kamuning</option>
+        <option value="acc">Araneta Center-Cubao</option>
+        <option value="san-anna">Santolan-Annapolis</option>
+        <option value="orti">Ortigas</option>
+        <option value="shbo">Shaw Boulevard</option>
+        <option value="bon">Boni</option>
+        <option value="guad">Guadalupe</option>
+        <option value="buen">Buendia</option>
+        <option value="ay">Ayala</option>
+        <option value="mag">Magallanes</option>
+        <option value="taft">Taft Avenue</option>
+
+    </select><br><br>
+    
+
+
+    <label for="end"><mark>End Station:</mark></label> <br>
+    <select id="end">
+        <option value="ntave">North Avenue</option>
+        <option value="qzave">Quezon Avenue</option>
+        <option value="kamu">Kamuning</option>
+        <option value="acc">Araneta Center-Cubao</option>
+        <option value="san-anna">Santolan-Annapolis</option>
+        <option value="orti">Ortigas</option>
+        <option value="shbo">Shaw Boulevard</option>
+        <option value="bon">Boni</option>
+        <option value="guad">Guadalupe</option>
+        <option value="buen">Buendia</option>
+        <option value="ay">Ayala</option>
+        <option value="mag">Magallanes</option>
+        <option value="taft">Taft Avenue</option>
+    </select>
+</div> <br><br><br>
+    
+    <button onclick="calculate()">Regular Fare</button>
+    <button onclick="calculateDiscountedFare()">Discounted Fare</button>
+<br>
+<img src="metro map.webp" alt="Manila Metro Map" class="center" width="500" height="500">
+
+
+<div class="footer">
+            &copy; Contributors: Zack. L. Pangilinan for design and help page, Brilliance Llanos Dee for coding and home page, and Daniel Sze for both design and coding and the schedule page. Thank you! 
+       
+
+   </div>
+
+
+
+  
+</body>
+
+<script>
+
+	
+	   const fares = {
+        ntave: { ntave: 0, qzave: 20, kamu: 25, acc: 30, 'san-anna': 35, orti: 40, shbo: 45, bon: 50, guad: 55, buen: 60, ay: 65, mag: 70, taft: 75 },
+        qzave: { ntave: 20, qzave: 0, kamu: 20, acc: 25, 'san-anna': 30, orti: 35, shbo: 40, bon: 45, guad: 50, buen: 55, ay: 60, mag: 65, taft: 70 },
+        kamu: { ntave: 25, qzave: 20, kamu: 0, acc: 20, 'san-anna': 25, orti: 30, shbo: 35, bon: 40, guad: 45, buen: 50, ay: 55, mag: 60, taft: 65 },
+        acc: { ntave: 30, qzave: 25, kamu: 20, acc: 0, 'san-anna': 20, orti: 25, shbo: 30, bon: 35, guad: 40, buen: 45, ay: 50, mag: 55, taft: 60 },
+        'san-anna': { ntave: 35, qzave: 30, kamu: 25, acc: 20, 'san-anna': 0, orti: 20, shbo: 25, bon: 30, guad: 35, buen: 40, ay: 45, mag: 50, taft: 55 },
+        orti: { ntave: 40, qzave: 35, kamu: 30, acc: 25, 'san-anna': 20, orti: 0, shbo: 20, bon: 25, guad: 30, buen: 35, ay: 40, mag: 45, taft: 50 },
+        shbo: { ntave: 45, qzave: 40, kamu: 35, acc: 30, 'san-anna': 25, orti: 20, shbo: 0, bon: 20, guad: 25, buen: 30, ay: 35, mag: 40, taft: 45 },
+        bon: { ntave: 50, qzave: 45, kamu: 40, acc: 35, 'san-anna': 30, orti: 25, shbo: 20, bon: 0, guad: 20, buen: 25, ay: 30, mag: 35, taft: 40 },
+        guad: { ntave: 55, qzave: 50, kamu: 45, acc: 40, 'san-anna': 35, orti: 30, shbo: 25, bon: 20, guad: 0, buen: 20, ay: 25, mag: 30, taft: 35 },
+        buen: { ntave: 60, qzave: 55, kamu: 50, acc: 45, 'san-anna': 40, orti: 35, shbo: 30, bon: 25, guad: 20, buen: 0, ay: 20, mag: 25, taft: 30 },
+        ay: { ntave: 65, qzave: 60, kamu: 55, acc: 50, 'san-anna': 45, orti: 40, shbo: 35, bon: 30, guad: 25, buen: 20, ay: 0, mag: 20, taft: 25 },
+        mag: { ntave: 70, qzave: 65, kamu: 60, acc: 55, 'san-anna': 50, orti: 45, shbo: 40, bon: 35, guad: 30, buen: 25, ay: 20, mag: 0, taft: 20 },
+        taft: { ntave: 75, qzave: 70, kamu: 65, acc: 60, 'san-anna': 55, orti: 50, shbo: 45, bon: 40, guad: 35, buen: 30, ay: 25, mag: 20, taft: 0 }
+    };
+
+    function calculate(){
+        var start = document.getElementById('start').value;
+        var end = document.getElementById('end').value;
+
+        if (fares[start] && fares[start][end] !== undefined) {
+            window.alert(fares[start][end]);
+        } else {
+            window.alert("Invalid route");
+        }
+    }
+
+    function calculateDiscountedFare(){
+        var start = document.getElementById('start').value;
+        var end = document.getElementById('end').value;
+
+        if (fares[start] && fares[start][end] !== undefined) {
+            var discountedFare = fares[start][end] * 0.8;
+            window.alert("Discounted fare: " + discountedFare);
+        } else {
+            window.alert("Invalid route");
+        }
+    }
+
+    
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    
+
+</script>
+
+</html>
